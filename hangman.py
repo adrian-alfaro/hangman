@@ -4,27 +4,51 @@
 # StartDate: 08/05/2023
 
 words = ['cookie', 'pizza', 'hamburger', 'chicken']
+lifes = 3
 
 import random as rd
 
-# Selects a random word and assigns it to a variable
+# Creates variables to store the word that has to be guessed and the representation of that word with underscores
+
 current_word = words[rd.randint(0,len(words)-1)]
-# Creates a string of underscores, one per letter
-spaces_word = '_ '*len(current_word)
+blanks = '_ '*len(current_word)
+original_word = current_word
 
-print(current_word)
-print(spaces_word)
+#----------------------------------------------
+def show_status():
+    print(original_word)
+    print(current_word)
+    print(blanks)
+    print(lifes)
 
-current_guess = input("Please enter one letter: ")
+show_status()
+#------------------------------------------------
 
-while current_guess in current_word:
-    print("nice!")
-    index = (current_word.find(current_guess))
-    if index != -1:
-        spaces_word[index+index] = current_guess
-        current_word[index] = "_"
+# Basicaly this moves the letters from the "current_word" to "blanks" and viceversa
+def letter_mover():
+    global current_word, blanks
+    while guess in current_word:
+        index = (current_word.find(guess))
+        current_word = current_word[:index] + '_' + current_word[index+1:]
+        blanks = blanks[:(index+index)] + guess + blanks[(index+index+1):]
+
+# User enters a letter
+def user_input():
+    global guess
+    try:
+        guess = input("Please enter one letter: ")
+    except:
+        print("please try again")
+
+# Checks if the guessed letter is part of the word
+user_input()
+
+if guess in current_word:
+    letter_mover()
+else:
+    lifes -= lifes
+    print("the letter was not part of the word")
 
 
-def replacer():
-    while index:
-        pass
+#----------------------------------------------------------------
+show_status()

@@ -1,9 +1,12 @@
-# This is a hangman game
+#################################################################
+# This is a Hangman game with a graphical interface via terminal
 
 # Author: Adrian Alfaro
 # StartDate: 08/05/2023
+# Version: 1.0
+#################################################################
 
-# This contains the initial variables
+# This section contains the initial variables +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 abc = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 words = ['cookie', 'pizza', 'hamburger', 'chicken']
 lifes = 3
@@ -16,12 +19,7 @@ current_word = words[rd.randint(0,len(words)-1)]
 blanks = '_ '*len(current_word)
 original_word = current_word
 
-# This will contain funtions used during development and the ones for the final version+++++++++++++++++++++++++++++++++++++++++
-
-# This shows the status of the variables I want to keep track of-----------------------
-def show_status():
-    print(original_word)
-  
+# This section contains funtions ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 # User enters a letter------------------------------------------------------------------
 def user_input():
@@ -42,6 +40,10 @@ def letter_mover():
 # Checks if the guessed letter is part of the word--------------------------------------
 def checker():
     global lifes
+    try:
+        abc[abc.index(guess.upper())] = '.'
+    except:
+        print('check again, that letter was used before')
     if guess in current_word:
         letter_mover()
         lifes += 1
@@ -50,7 +52,7 @@ def checker():
         print("The letter is not part of the word")
 
 
-# here I want to test the more graphical aspects of the game++++++++++++++++++++++++++++++++++++++++++
+# This section contains a reference and a funtion for the GUI +++++++++++++++++++++++++++++++++++++++++++++++++
 
 #    This is a reference
 #     ________
@@ -81,12 +83,11 @@ def interface():
                   '\n\n' + f'   {blanks}')
     print(hang_interface)
 
-#----------------------------------------------
+# This is where the game starts ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 print('Hangman')
 
 while lifes:
     interface()
-#    show_status()
     user_input()
     checker()
     if '_' not in blanks:

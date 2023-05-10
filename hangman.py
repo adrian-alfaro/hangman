@@ -68,7 +68,10 @@ def checker():
 #
 # Next letter is:
 
-hang_interface = ( '    ________' + '\n' +
+
+
+def interface():
+    hang_interface = ( '    ________' + '\n' +
                   f'   |        |    Remaining lifes: {lifes}' + '\n' +
                    '   |    ( )_|' + '\n' + 
                   f'   |    /|\      {abc[0] } {abc[1] } {abc[2] } {abc[3] } {abc[4] }' + '\n' + 
@@ -77,8 +80,6 @@ hang_interface = ( '    ________' + '\n' +
                   f'   |   /   \     {abc[15]} {abc[16]} {abc[17]} {abc[18]} {abc[19] }' + '\n' +
                   f'   |__________   {abc[20]} {abc[21]} {abc[22]} {abc[23]} {abc[24]} {abc[25]}' +
                   '\n\n' + f'   {blanks}')
-
-def interface():
     print(hang_interface)
 
 #----------------------------------------------

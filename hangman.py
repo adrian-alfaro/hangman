@@ -21,10 +21,7 @@ original_word = current_word
 # This shows the status of the variables I want to keep track of-----------------------
 def show_status():
     print(original_word)
-    print(current_word)
-    print(blanks)
-    print(lifes)
-    print(abc)
+  
 
 # User enters a letter------------------------------------------------------------------
 def user_input():
@@ -44,11 +41,13 @@ def letter_mover():
 
 # Checks if the guessed letter is part of the word--------------------------------------
 def checker():
+    global lifes
     if guess in current_word:
         letter_mover()
+        lifes += 1
     else:
-    #    lifes -= lifes
-        print("the letter was not part of the word")
+        lifes -= 1
+        print("The letter is not part of the word")
 
 
 # here I want to test the more graphical aspects of the game++++++++++++++++++++++++++++++++++++++++++
@@ -85,8 +84,14 @@ def interface():
 #----------------------------------------------
 print('Hangman')
 
-for i in range(4):
+while lifes:
     interface()
-    show_status()
+#    show_status()
     user_input()
     checker()
+    if '_' not in blanks:
+        print('You Won!')
+        break
+
+else:
+    print('You lose')
